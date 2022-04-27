@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <!-- attempting to make menu bar action
-    <item android:id="@+id/action_favorite_list"
-        android:title="@string/action_favorites"
-        android:icon="@drawable/outline_favorite_border_24"
-        android:orderInCategory="1"
-        app:showAsAction="ifRoom"/>
 
-    <item android:id="@+id/action_home"
-        android:title="@string/action_home"
-        android:icon="@drawable/outline_home_24"
-        android:orderInCategory="2"
+    <item
+        android:id="@+id/action_watch_list"
+        android:title="@string/watch_button"
+        android:icon="@drawable/outline_favorite_border_white_24"
         app:showAsAction="always"/>
-     -->
 
     <item android:id="@+id/action_share"
         android:title="@string/action_share"

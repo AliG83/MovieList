@@ -109,4 +109,24 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnMo
         detailIntent.putExtra(String.valueOf(EXTRA_RATING), clickedMovie.getRating());
         startActivity(detailIntent);
     }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Inflate the menu; this adds items to the app bar
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_watch_list);
+        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        switch(item.getItemId()){
+            case R.id.action_watch_list:
+                Intent intent = new Intent(this, WatchList.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

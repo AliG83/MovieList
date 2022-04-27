@@ -30,12 +30,13 @@ public class FavoritesDatabaseHelper extends SQLiteOpenHelper {
         movieValues.put("OVERVIEW", overview);
         movieValues.put("POSTER", poster);
         movieValues.put("RATING", rating);
-        db.insert("MOVIE", null, movieValues);
+        db.insert("WATCH", null, movieValues);
     }
 
     private void updateMyDatabase (SQLiteDatabase db, int oldVersion, int newVersion){
         if(oldVersion < 1){
-            db.execSQL("CREATE TABLE MOVIE (_id INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT, OVERVIEW TEXT, POSTER TEXT, RATING DOUBLE)" );
+            db.execSQL("CREATE TABLE WATCH (_id INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT, OVERVIEW TEXT, POSTER TEXT, RATING DOUBLE)" );
+            insertMovie(db, "TestTitle", "Test Overview", "Test URL", 1.00);
         }
     }
 }
