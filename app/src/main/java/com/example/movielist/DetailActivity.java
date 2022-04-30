@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextClock;
@@ -55,8 +56,8 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     public void onFavoriteClicked(View view){
-        CheckBox favorite = (CheckBox) findViewById(R.id.favorite);
-        if(favorite.isChecked()){
+        Button favorite = (Button) findViewById(R.id.watch);
+
             SQLiteOpenHelper favoritesDatabaseHelper = new FavoritesDatabaseHelper(this);
             ContentValues favoriteValues = new ContentValues();
             favoriteValues.put("TITLE", mTitle);
@@ -72,7 +73,7 @@ public class DetailActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(this, "Database Unavailable", Toast.LENGTH_SHORT);
                 toast.show();
             }
-        }
+
 
     }
 }

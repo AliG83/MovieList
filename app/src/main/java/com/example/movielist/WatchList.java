@@ -57,7 +57,7 @@ public class WatchList extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         //Inflate the menu; this adds items to the app bar
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_watch, menu);
         MenuItem menuItem = menu.findItem(R.id.action_share);
         ArrayList<String> shareList = readDB();
         String shareText = "Check Out These Movies to Watch!\n";
