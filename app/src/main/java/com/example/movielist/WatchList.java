@@ -1,11 +1,13 @@
 package com.example.movielist;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ShareActionProvider;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,6 +16,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -53,6 +57,27 @@ public class WatchList extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "Database Unavailable", Toast.LENGTH_SHORT);
             toast.show();
         }
+
+        watchList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int listItem, long l) {
+
+                new AlertDialog.Builder(WatchList.this)
+                        .setTitle("Do you want to remove this movie from the list?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                watchList.removeViewAt(i);
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }).create().show();
+            }
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -95,6 +120,7 @@ public class WatchList extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_TEXT, shareText);
         shareActionProvider.setShareIntent(intent);
     }
+
 
     @Override
     public void onDestroy(){
