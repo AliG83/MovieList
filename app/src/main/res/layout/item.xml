@@ -21,10 +21,10 @@
 
             <ImageView
                 android:id="@+id/imageview"
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:layout_marginTop="8dp"
-                android:scaleType="center"
+                android:layout_width="155dp"
+                android:layout_height="250dp"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

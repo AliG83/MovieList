@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -62,13 +63,15 @@ public class WatchList extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int listItem, long l) {
-
                 new AlertDialog.Builder(WatchList.this)
                         .setTitle("Do you want to remove this movie from the list?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                watchList.removeViewAt(i);
+                                //watchList.removeViewAt(listItem);
+                                db = watchListDatabaseHelper.getWritableDatabase();
+                                db.delete("WATCH", "_id = " + ((int) l), null);
+                                recreate();
                             }
                         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
@@ -119,6 +122,16 @@ public class WatchList extends AppCompatActivity {
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, shareText);
         shareActionProvider.setShareIntent(intent);
+    }
+
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        Cursor newCursor = db.query("WATCH", new String[] {"_id", "TITLE"}, null, null, null, null, null);
+        ListView watchList = (ListView) findViewById(R.id.watch_list);
+        CursorAdapter adapter = (CursorAdapter) watchList.getAdapter();
+        adapter.changeCursor(newCursor);
+        cursor = newCursor;
     }
 
 
