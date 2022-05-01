@@ -63,6 +63,8 @@ public class DetailActivity extends AppCompatActivity {
             try {
                 SQLiteDatabase db = watchListDatabaseHelper.getWritableDatabase();
                 db.insert("WATCH", null, watchValues);
+                Toast toast = Toast.makeText(this,"Movie added!", Toast.LENGTH_SHORT);
+                toast.show();
             }
             catch (SQLiteException e){
                 Toast toast = Toast.makeText(this, "Database Unavailable", Toast.LENGTH_SHORT);
