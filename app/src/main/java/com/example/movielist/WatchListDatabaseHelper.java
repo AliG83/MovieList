@@ -7,12 +7,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class FavoritesDatabaseHelper extends SQLiteOpenHelper {
+public class WatchListDatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "favorites";
+    private static final String DB_NAME = "watch list";
     private static final int DB_VERSION = 1;
 
-    FavoritesDatabaseHelper(Context context){super(context, DB_NAME, null, DB_VERSION);}
+    WatchListDatabaseHelper(Context context){super(context, DB_NAME, null, DB_VERSION);}
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
@@ -36,7 +36,7 @@ public class FavoritesDatabaseHelper extends SQLiteOpenHelper {
     private void updateMyDatabase (SQLiteDatabase db, int oldVersion, int newVersion){
         if(oldVersion < 1){
             db.execSQL("CREATE TABLE WATCH (_id INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT, OVERVIEW TEXT, POSTER TEXT, RATING DOUBLE)" );
-            insertMovie(db, "TestTitle", "Test Overview", "Test URL", 1.00);
+            //insertMovie(db, "TestTitle", "Test Overview", "Test URL", 1.00);
         }
     }
 }

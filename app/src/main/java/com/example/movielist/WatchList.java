@@ -43,7 +43,7 @@ public class WatchList extends AppCompatActivity {
 
         ListView watchList = (ListView) findViewById(R.id.watch_list);
 
-        SQLiteOpenHelper watchListDatabaseHelper = new FavoritesDatabaseHelper(this);
+        SQLiteOpenHelper watchListDatabaseHelper = new WatchListDatabaseHelper(this);
 
         try{
             db = watchListDatabaseHelper.getReadableDatabase();
@@ -98,7 +98,7 @@ public class WatchList extends AppCompatActivity {
     }
 
     public ArrayList<String> readDB(){
-        SQLiteOpenHelper favoritesDatabaseHelper = new FavoritesDatabaseHelper(this);
+        SQLiteOpenHelper favoritesDatabaseHelper = new WatchListDatabaseHelper(this);
         ArrayList<String> shareList = new ArrayList<>();
         try{
             SQLiteDatabase  db = favoritesDatabaseHelper.getReadableDatabase();

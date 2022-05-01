@@ -1,16 +1,13 @@
 package com.example.movielist;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,8 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
-
-import org.w3c.dom.Text;
 
 public class DetailActivity extends AppCompatActivity {
     public static String mTitle;
@@ -58,16 +53,16 @@ public class DetailActivity extends AppCompatActivity {
     public void onFavoriteClicked(View view){
         Button favorite = (Button) findViewById(R.id.watch);
 
-            SQLiteOpenHelper favoritesDatabaseHelper = new FavoritesDatabaseHelper(this);
-            ContentValues favoriteValues = new ContentValues();
-            favoriteValues.put("TITLE", mTitle);
-            favoriteValues.put("OVERVIEW", mOverview);
-            favoriteValues.put("POSTER", mPoster);
-            favoriteValues.put("RATING", mRating);
+            SQLiteOpenHelper watchListDatabaseHelper = new WatchListDatabaseHelper(this);
+            ContentValues watchValues = new ContentValues();
+            watchValues.put("TITLE", mTitle);
+            watchValues.put("OVERVIEW", mOverview);
+            watchValues.put("POSTER", mPoster);
+            watchValues.put("RATING", mRating);
 
             try {
-                SQLiteDatabase db = favoritesDatabaseHelper.getWritableDatabase();
-                db.insert("WATCH", null, favoriteValues);
+                SQLiteDatabase db = watchListDatabaseHelper.getWritableDatabase();
+                db.insert("WATCH", null, watchValues);
             }
             catch (SQLiteException e){
                 Toast toast = Toast.makeText(this, "Database Unavailable", Toast.LENGTH_SHORT);
